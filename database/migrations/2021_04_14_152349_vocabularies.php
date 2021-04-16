@@ -18,7 +18,7 @@ class Vocabularies extends Migration
             $table->string('word');
             $table->string('means');
             $table->string('spelling')->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

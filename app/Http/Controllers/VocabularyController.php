@@ -7,8 +7,15 @@ namespace App\Http\Controllers;
 use App\Models\Sentence;
 use App\Models\Vocabulary;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 
+/**
+ * Class VocabularyController
+ * @package App\Http\Controllers
+ */
 class VocabularyController
 {
     /**
@@ -53,6 +60,15 @@ class VocabularyController
     public function update(Request $request, $id)
     {
         $input = $request->only(Vocabulary::getFillable());
-        return Vocabulary::update($id, $input);
+        return Vocabulary::where('id', $id)->update($input);
+    }
+
+    /**
+     * @param $id
+     * @return Builder|Builder[]|Collection|Model|null
+     */
+    public function find($id) {
+        return Vocabulary::with('sentences')
+            ->find($id);
     }
 }

@@ -15,11 +15,11 @@ class Sentences extends Migration
     {
         Schema::create('sentences', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('vocabulary_id');
+            $table->unsignedBigInteger('vocabulary_id')->constrained();
             $table->string('sentence');
             $table->string('means');
             $table->string('spelling')->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
